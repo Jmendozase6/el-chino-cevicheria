@@ -3,10 +3,26 @@ import SideBarItem from './sidebar-item';
 
 export default function SideBar() {
 
-	const fcHome = <FcHome className='text-lg' />;
-	const fcTodoList = <FcTodoList className='text-lg' />;
-	const fcExport = <FcExport className='text-lg' />;
-	const fcBarChart = <FcBarChart className='text-lg' />;
+	const sideBarItems = [
+		{
+			text: 'Inicio',
+			icon: FcHome,
+			onClick: () => { alert('Inicio') }
+		},
+		{
+			text: 'Pedidos',
+			icon: FcTodoList,
+			onClick: () => { alert('Pedidos') }
+		},
+		{
+			text: 'Estadísticas',
+			icon: FcBarChart
+		},
+		{
+			text: 'Cerrar sesión',
+			icon: FcExport
+		}
+	]
 
 	return (
 
@@ -15,23 +31,16 @@ export default function SideBar() {
 				className='w-[127px] h-[127px] mx-auto'
 				src="./assets/side-logo.webp"
 				alt="logo" />
-
-			<SideBarItem text='Inicio'>
-				{fcHome}
-			</SideBarItem>
-
-			<SideBarItem text='Pedidos'>
-				{fcTodoList}
-			</SideBarItem>
-
-			<SideBarItem text='Estadísticas'>
-				{fcBarChart}
-			</SideBarItem>
-
-			<SideBarItem text='Cerrar sesión'>
-				{fcExport}
-			</SideBarItem>
-
+			{
+				sideBarItems.map(({ text, icon, onClick }, index) => (
+					<SideBarItem
+						key={index}
+						text={text}
+						icon={icon}
+						onClick={onClick}
+					/>
+				))
+			}
 		</div>
 	)
 }
